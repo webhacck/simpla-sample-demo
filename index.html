@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>サンプル</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <section class="splash">
+    
+      <!-- simplaタグを利用しているので、編集可能なコンテンツになる -->
+      <h1 class="splash__title"><simpla-text sid="splash-title"></simpla-text></h1>
+
+      <!-- simplaタグを利用していないので、編集できないコンテンツになる -->
+      <h2 class="splash__subtitle">サンプルテキスト</h2>
+    
+    </section>
+
+
+    <section class="features">
+
+      <!-- simpla-blockタグを利用しているので、それぞれのブロックで同じsid名が使える -->
+      <simpla-block sid="feature-1" class="feature">
+        <simpla-img sid="image" class="feature__img"></simpla-img>
+        <simpla-text sid="copy" class="feature__copy"></simpla-text>
+      </simpla-block>
+
+      <simpla-block sid="feature-2" class="feature">
+        <simpla-img sid="image" class="feature__img"></simpla-img>
+        <simpla-text sid="copy" class="feature__copy" inline></simpla-text>
+      </simpla-block>
+
+      <simpla-block sid="feature-3" class="feature">
+        <simpla-img sid="image" class="feature__img"></simpla-img>
+        <simpla-text sid="copy" class="feature__copy" inline></simpla-text>
+      </simpla-block>
+
+    </section>
+    
+    
+    <!-- simplaのJSライブラリを読み込む -->
+    <script src="https://app.simpla.io"></script>
+    <script>
+      // プロジェクト作成時に生成されたIDを読み込む
+      Simpla('【プロジェクトID】');
+      
+      
+      
+      /************************************/
+      /******* JavaScriptによるTips *******/
+      
+      // sid名が[splash-title]の要素をJSONで取得する 
+      Simpla.get('splash-title')
+      .then(function(data) {
+      
+        console.log(data);
+        
+      })
+      
+      
+      // ログイン処理を行う（セキュリティの観点から通常はサーバー側で記述する）
+      Simpla.login({
+        email: '【Simplaに登録したメルアド】',
+        password: '【Simplaに登録したパスワード】'
+      })
+      .then(function() {
+      
+        // sid名が[feature-2]のブロック内にあるsid名[copy]の要素を書き換える
+        Simpla.set('feature-2.copy', {
+        
+          id: 'feature-2.copy',
+          text: '新しいテキストを追加'
+          
+        })
+        // 書き換えた後のコンテンツをJSONで取得する
+        .then(function(data) {
+        
+          console.log(data);
+          
+        })
+      })
+    </script>
+
+    
+  </body>
+</html>
